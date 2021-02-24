@@ -1,28 +1,41 @@
 import './App.css';
+import React, { Component } from 'react';
 import Comment from './Comment';
 
-function App() {
-  // name and sotre variables before return statement
-  const post = {
+class App extends Component {
+  state = {
     title: "Dinosaurs are awesome",
     author: "Stealthy Stegosaurus",
     body: "Checkout out this body property",
     comments: ['First!', 'Great post', 'Hire this author now!']
   }
-  // map returns an array 
-  const comments = post.comments.map((comment, index)=> (<Comment text={comment} key={index}/>))
-  // comments = [ <Comment text={post.comments[0]} />, <Comment text={post.comments[1]} />, <Comment text={post.comments[1]} />]
+  //make a method tu ipdate body's state
 
-  return (
-    <div className="App">
-      <h1>{post.title}</h1>
-      <p>by {post.author}</p>
-      <p>{post.body}</p>
-      <h3>Comments:</h3>
-      <p>{post.comments[0]}</p>
-      { comments }
-    </div>
-  );
+  changeBody = () => {
+    const userInput = prompt('Give a new body:')
+    //update body state
+    this.setState({
+      body: userInput
+    })
+  }
+
+  render() {
+    //map returns an array 
+    const comments = this.state.comments.map((comment, index)=> (<Comment text={comment} key={index}/>))
+  
+    return (
+      <div className="App">
+        <h1>{this.state.title}</h1>
+        <p>by {this.state.author}</p>
+        <p>{this.state.body}</p>
+        <h3>Comments:</h3>
+        { comments }
+        <button onClick={this.changeBody}>Don't click here</button>
+      </div>
+    );
+      // name and sotre variables before return statement
+  }  
 }
+
 
 export default App;
