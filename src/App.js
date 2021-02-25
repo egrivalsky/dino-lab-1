@@ -19,6 +19,14 @@ class App extends Component {
     })
   }
 
+  addComment = () => {
+    const newComment = prompt('How say you?')
+    this.state.comments.push(newComment);
+    this.setState({
+      comments: this.state.comments
+    })
+  }
+
   render() {
     //map returns an array 
     const comments = this.state.comments.map((comment, index)=> (<Comment text={comment} key={index}/>))
@@ -31,6 +39,8 @@ class App extends Component {
         <h3>Comments:</h3>
         { comments }
         <button onClick={this.changeBody}>Don't click here</button>
+        <br></br>
+        <button onClick={this.addComment}>Add a comment</button>
       </div>
     );
       // name and sotre variables before return statement
